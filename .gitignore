@@ -1,4 +1,9 @@
 .idea
 *.sqlite3
+*.sqlite
 env
+venv
+.env
+.venv
+
 
