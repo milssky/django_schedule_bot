@@ -1,7 +1,7 @@
 import logging
 from django.shortcuts import render, HttpResponse, HttpResponsePermanentRedirect
 
-from .logic import validate_auth_data
+from .utils import validate_auth_data
 
 logging.basicConfig(level=logging.DEBUG)
 
