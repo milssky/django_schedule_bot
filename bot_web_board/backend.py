@@ -2,17 +2,14 @@ from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.models import User
 
 
+# TODO нужна модель для юзера с хешем
 class TelegramBackend(BaseBackend):
-    def authenticate(self, request, username=None, password=None):
-        login_valid = (username == 'milssky')
-        pwd_valid = True
-        if login_valid and pwd_valid:
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                return None
-            return user
-        return None
+    def authenticate(self, request, username=None, hash=None):
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return None
+        return user
 
     def get_user(self, user_id):
         try:
