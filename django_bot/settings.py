@@ -128,3 +128,6 @@ try:
     from bot.settings import *
 except ImportError:
     pass
+
+
+AUTH_USER_MODEL = 'bot.TgUser'

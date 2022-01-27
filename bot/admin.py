@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import User, Task
+from django.contrib.auth.admin import UserAdmin
+from .models import Task, TgUser
 
 # Register your models here.
-admin.site.register(User)
+admin.site.register(TgUser, UserAdmin)
 admin.site.register(Task)

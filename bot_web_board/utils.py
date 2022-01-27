@@ -16,5 +16,4 @@ def validate_auth_data(auth_data: dict) -> bool:
     check_message = bytearray(data_check_string, 'utf-8')
 
     data_hash = hmac.new(secret_key, msg=check_message, digestmod=hashlib.sha256).hexdigest()
-
     return data_hash == tg_hash

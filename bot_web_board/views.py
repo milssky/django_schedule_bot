@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, HttpResponsePermanentRedirect
 
 from .utils import validate_auth_data
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.ERROR)
 
 
 def index_bot(request):
