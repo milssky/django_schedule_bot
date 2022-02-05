@@ -1,9 +1,19 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth.models import User
+User = get_user_model()
 
 
 class TelegramBackend(BaseBackend):
-    def authenticate(self, request, **kwargs):
-        pass
+    def authenticate(self, request, username=None):
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return None
+        return user
 
     def get_user(self, user_id):
-        pass
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return None

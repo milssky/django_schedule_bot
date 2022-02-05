@@ -1,17 +1,30 @@
 import logging
-from django.shortcuts import render, HttpResponsePermanentRedirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, HttpResponse, HttpResponsePermanentRedirect
 
 
-logging.basicConfig(level=logging.DEBUG)
+from .utils import validate_auth_data
+
+logging.basicConfig(level=logging.ERROR)
 
 
-# Create your views here.
 def index_bot(request):
-    logging.info("index")
-    return render(request, "bot_web_board/tg_login.html")
+    return render(request, 'bot_web_board/tg_login.html')
 
 
 def tg_login(request):
-    logging.info("Login detected")
-    logging.info(request)
-    return HttpResponsePermanentRedirect("/")
+    auth_data = dict(request.GET.items())
+    if not validate_auth_data(auth_data):
+        logging.error(f'Wrong login with {auth_data}')
+        return HttpResponse('Wrong auth data. Check it and try again')
+    user = authenticate(username=auth_data['username'])
+    login(request, user)
+    return HttpResponsePermanentRedirect('/home')
+
+
+@login_required
+def home(request):
+    user = request.user
+    return HttpResponse(f'{user} logged in.')
+
