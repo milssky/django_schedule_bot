@@ -1,8 +1,8 @@
 import logging
-
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse, HttpResponsePermanentRedirect
+
 
 from .utils import validate_auth_data
 
@@ -27,3 +27,4 @@ def tg_login(request):
 def home(request):
     user = request.user
     return HttpResponse(f'{user} logged in.')
+
