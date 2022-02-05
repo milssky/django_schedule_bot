@@ -2,7 +2,6 @@ from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.models import User
 
 
-# TODO нужна модель для юзера с хешем
 class TelegramBackend(BaseBackend):
     def authenticate(self, request, username=None, hash=None):
         try:

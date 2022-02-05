@@ -12,9 +12,18 @@ def get_user_tasks(user_id) -> str:
 
 @sync_to_async
 def get_user_from_tg_id(tg_id) -> str:
-    """Получает User из БД или возрвщает пустую строку в случае его отсутствия"""
+    """Получает User из БД или возрвщает пустую строку в случае его отсутствия."""
     try:
         user = TgUser.objects.get(tg_user=tg_id)
     except ObjectDoesNotExist:
         return ""
-    return user.username
+    return user
+
+
+@sync_to_async
+def create_task(task, user):
+    new_task = Task(
+        author=user,
+        text=task
+    )
+    new_task.save()
