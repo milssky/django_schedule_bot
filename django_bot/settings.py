@@ -133,3 +133,5 @@ except ImportError:
 
 AUTH_USER_MODEL = 'bot.TgUser'
 AUTHENTICATION_BACKENDS = ['users.backend.TelegramBackend']
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'web_board:home'

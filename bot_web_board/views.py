@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.ERROR)
 
 
 def index_bot(request):
-    return render(request, 'bot_web_board/tg_login.html')
+    return HttpResponse('Hello')
 
 
 def tg_login_callback(request):
