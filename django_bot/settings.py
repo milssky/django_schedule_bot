@@ -132,4 +132,4 @@ except ImportError:
 
 
 AUTH_USER_MODEL = 'bot.TgUser'
-AUTHENTICATION_BACKENDS = ['bot_web_board.backend.TelegramBackend']
+AUTHENTICATION_BACKENDS = ['users.backend.TelegramBackend']

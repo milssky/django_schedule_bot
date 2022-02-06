@@ -13,7 +13,7 @@ def index_bot(request):
     return render(request, 'bot_web_board/tg_login.html')
 
 
-def tg_login(request):
+def tg_login_callback(request):
     auth_data = dict(request.GET.items())
     if not validate_auth_data(auth_data):
         logging.error(f'Wrong login with {auth_data}')
